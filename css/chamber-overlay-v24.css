@@ -1,0 +1,22 @@
+/* V2.4: Full-bleed chamber image with independent interactive question UI. */
+#quiz.scene.active{display:flex!important;position:relative;isolation:isolate;align-items:center;justify-content:center;min-height:calc(100svh - 70px);padding:clamp(18px,3vw,40px)!important;background:#071020!important;overflow:hidden}
+#quiz.scene::before,#quiz.scene::after{display:none!important;content:none!important}
+#quiz .chamber-art{display:block!important;position:absolute!important;inset:0!important;width:100%!important;height:100%!important;min-height:0!important;z-index:0!important;pointer-events:none;overflow:hidden}
+#quiz .chamber-art img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center center;display:block}
+#quiz .chamber-art::after{content:"";display:block;position:absolute;inset:0;background:linear-gradient(90deg,rgba(3,9,21,.36),rgba(3,9,21,.24) 55%,rgba(3,9,21,.36));pointer-events:none}
+#quiz .chamber-art .chamber-caption{display:none!important}
+#quiz .content.quiz-panel{position:relative!important;z-index:2!important;display:flex!important;flex-direction:column;width:min(100%,800px)!important;max-width:800px!important;margin:0 auto!important;padding:clamp(18px,3vw,34px)!important;border:1px solid rgba(239,197,121,.72)!important;border-radius:20px!important;background:rgba(6,17,34,.32)!important;box-shadow:0 12px 50px rgba(0,0,0,.25)!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+#quiz .eyebrow{color:#ffe1a0;text-shadow:0 2px 8px #000}
+#quiz .progress-top{margin-top:16px;text-shadow:0 2px 8px #000}
+#quiz .progress{margin:9px 0 17px;background:rgba(11,25,48,.7)}
+#quiz .quiz-panel h2{font-size:clamp(21px,3vw,31px);line-height:1.48;margin:0 0 17px;color:#fff1d2;text-shadow:0 2px 10px #000,0 0 20px rgba(0,0,0,.65)}
+#quiz .options{display:grid;gap:9px}
+#quiz .option{min-height:54px;padding:11px 15px;border:1px solid rgba(241,199,123,.75)!important;border-radius:12px;background:rgba(9,22,42,.72)!important;color:#fff3df;box-shadow:0 3px 12px rgba(0,0,0,.16);text-shadow:0 1px 4px #000;transition:background .15s,border-color .15s}
+#quiz .option:focus-visible{background:rgba(36,62,97,.94)!important;border-color:#ffe0a1!important}
+#quiz .quiz-bottom{margin-top:13px}
+#quiz .quiz-bottom .hint{color:#f2e5cd;text-shadow:0 2px 7px #000}
+@media(max-width:700px){#quiz.scene.active{min-height:calc(100svh - 65px);padding:15px 12px!important;align-items:flex-start}#quiz .chamber-art img{object-position:50% center}#quiz .chamber-art::after{background:rgba(3,10,23,.33)}#quiz .content.quiz-panel{padding:19px 15px!important;margin:10px auto 20px!important;background:rgba(6,17,34,.38)!important}#quiz .quiz-panel h2{font-size:clamp(20px,5vw,27px)}#quiz .option{min-height:55px}}
+
+/* V4.5.2: Touch devices must never retain simulated hover from previous answers. */
+@media (hover:hover) and (pointer:fine){#quiz .option:hover:not(:focus-visible){background:rgba(36,62,97,.94)!important;border-color:#ffe0a1!important}}
+@media (hover:none), (pointer:coarse){#quiz .option,#quiz .option:hover,#quiz .option:focus,#quiz .option:active{background:rgba(9,20,39,.82)!important;border-color:rgba(241,199,123,.75)!important;box-shadow:none!important;filter:none!important;outline:none!important;-webkit-tap-highlight-color:transparent!important}#quiz .option:focus-visible{outline:3px solid #71d8e3!important;outline-offset:3px!important}}

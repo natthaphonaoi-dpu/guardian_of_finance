@@ -1,0 +1,1 @@
+Guardian of Finance V1.5: Welcome Grand Hall background without baked-in text. All text and start button are native HTML with CSS animations; game.js, host, display and cards unchanged. Deploy Guardian_of_Finance_Phase2 folder contents so play.html is at site root. Test /play.html?v=grand-hall-v15.

@@ -1,0 +1,11 @@
+/* Guardian of Finance — ambient magic particles, no dependencies */
+(()=>{'use strict';
+const scenes=[...document.querySelectorAll('main .scene')];
+const reduced=window.matchMedia('(prefers-reduced-motion: reduce)');
+const canvases=scenes.map(scene=>{const c=document.createElement('canvas');c.className='magic-particle-canvas';c.setAttribute('aria-hidden','true');scene.appendChild(c);return {scene,c,ctx:c.getContext('2d'),dots:[],w:0,h:0};});
+const rand=(a,b)=>a+Math.random()*(b-a);
+function reset(s){const rect=s.scene.getBoundingClientRect(),dpr=Math.min(devicePixelRatio||1,1.3);s.w=Math.max(1,rect.width);s.h=Math.max(1,rect.height);s.c.width=Math.round(s.w*dpr);s.c.height=Math.round(s.h*dpr);s.ctx.setTransform(dpr,0,0,dpr,0,0);const count=reduced.matches?20:Math.min(115,Math.max(32,Math.floor(s.w*s.h/(innerWidth<700?10500:12500))));s.dots=Array.from({length:count},()=>({x:rand(0,s.w),y:rand(0,s.h),r:rand(.6,2.4),vx:rand(-.14,.14),vy:rand(-.33,-.06),phase:rand(0,7),pulse:rand(.5,1.8),hue:Math.random()<.15?190:42}));}
+let last=0;
+function draw(t){requestAnimationFrame(draw);if(document.hidden||t-last<45)return;const dt=Math.min(2,(t-last)/33||1);last=t;for(const s of canvases){if(!s.scene.classList.contains('active'))continue;if(!s.w||Math.abs(s.scene.clientWidth-s.w)>2||Math.abs(s.scene.clientHeight-s.h)>2)reset(s);const g=s.ctx;g.clearRect(0,0,s.w,s.h);for(const p of s.dots){if(!reduced.matches){p.x+=(p.vx+Math.sin(t*.0005+p.phase)*.12)*dt;p.y+=p.vy*dt;if(p.y< -12){p.y=s.h+12;p.x=rand(0,s.w)}if(p.x< -12)p.x=s.w+12;if(p.x>s.w+12)p.x=-12;}const a=(.30+.50*(.5+.5*Math.sin(t*.001*p.pulse+p.phase)));const rgb=p.hue===42?'255,211,132':'139,220,240';const glow=g.createRadialGradient(p.x,p.y,0,p.x,p.y,p.r*7);glow.addColorStop(0,`rgba(${rgb},${a})`);glow.addColorStop(.25,`rgba(${rgb},${a*.35})`);glow.addColorStop(1,`rgba(${rgb},0)`);g.fillStyle=glow;g.beginPath();g.arc(p.x,p.y,p.r*7,0,Math.PI*2);g.fill();if(p.r>1.8){g.strokeStyle=`rgba(${rgb},${a*.4})`;g.lineWidth=.6;g.beginPath();g.moveTo(p.x-p.r*3,p.y);g.lineTo(p.x+p.r*3,p.y);g.moveTo(p.x,p.y-p.r*3);g.lineTo(p.x,p.y+p.r*3);g.stroke();}}}}
+addEventListener('resize',()=>canvases.forEach(s=>{s.w=0}),{passive:true});requestAnimationFrame(draw);
+})();

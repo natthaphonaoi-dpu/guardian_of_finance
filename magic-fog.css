@@ -1,0 +1,5 @@
+/* V3 — irregular volumetric smoke texture, always behind game UI */
+.scene .magic-fog-canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none!important;z-index:2!important;opacity:.86;mix-blend-mode:screen}
+#result.scene .magic-fog-canvas{opacity:.95}
+@media(max-width:690px){.scene .magic-fog-canvas{opacity:.82}}
+@media(prefers-reduced-motion:reduce){.scene .magic-fog-canvas{opacity:.55}}

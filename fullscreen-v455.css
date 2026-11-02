@@ -1,0 +1,7 @@
+#guardianFullscreenButton{position:fixed;top:calc(env(safe-area-inset-top, 0px) + 12px);right:calc(env(safe-area-inset-right, 0px) + 14px);z-index:2147483000;background:rgba(9,21,43,.89);color:#f6dca4;border:1px solid rgba(241,204,126,.7);border-radius:999px;padding:10px 15px;font:600 13px/1.2 system-ui,-apple-system,sans-serif;letter-spacing:.02em;cursor:pointer;box-shadow:0 4px 20px rgba(0,0,0,.32);touch-action:manipulation}
+#guardianFullscreenButton:hover{background:#233b62}
+#guardianFullscreenButton:focus-visible{outline:3px solid #f6dca4;outline-offset:3px}
+#guardianFullscreenNote{position:fixed;top:calc(env(safe-area-inset-top, 0px) + 64px);right:12px;z-index:2147483000;max-width:min(360px,calc(100vw - 24px));background:#132340;color:#fff4d8;border:1px solid #d7b76e;border-radius:12px;padding:14px;font:14px/1.5 system-ui,-apple-system,sans-serif;box-shadow:0 8px 24px #0008}
+#guardianFullscreenNote[hidden]{display:none!important}
+body:has(#guardianFullscreenButton) .top .sound{margin-right:105px}
+@media(max-width:600px){#guardianFullscreenButton{font-size:12px;padding:8px 10px;top:calc(env(safe-area-inset-top, 0px) + 8px);right:8px}body:has(#guardianFullscreenButton) .top .sound{margin-right:95px}}

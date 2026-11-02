@@ -1,0 +1,1 @@
+Guardian of Finance V2.1: Chamber of Decisions background. ใช้ภาพที่อนุมัติในหน้าตอบคำถาม #quiz เท่านั้น; หน้า Welcome, ผลลัพธ์ และตรรกะเกมคงเดิม. Deploy โฟลเดอร์ Guardian_of_Finance_Phase2 โดยให้ play.html อยู่ที่ root.

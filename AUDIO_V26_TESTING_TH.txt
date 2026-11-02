@@ -1,0 +1,5 @@
+Guardian of Finance V2.6 — Audio Engine only. No music assets replaced.
+Test with: py -m http.server 8000; open http://localhost:8000/play.html?audioDebug=1
+Enable audio, adjust music and SFX sliders, complete all 6 questions, flip/download card.
+Inspect browser Console for [GuardianAudio] warnings. No Netlify deploy needed.
+Original V2.5 ZIP is unchanged.

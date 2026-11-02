@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>Guardian of Finance | MC Console V4.6</title><link rel="stylesheet" href="css/show.css"><link rel="stylesheet" href="css/ui-v46.css?v=46"></head>
+<body class="host-v46"><button type="button" id="guardianFullscreenButton" aria-pressed="false">⛶ เต็มจอ</button><div id="guardianFullscreenNote" role="status" hidden></div>
+<header><span class="logo">✦ GUARDIAN OF FINANCE · HOST</span><nav class="links"><a id="openDisplay" href="display.html" target="_blank" rel="noopener">เปิดจอหลัก ↗</a><a href="play.html" target="_blank" rel="noopener">ทดสอบ Player ↗</a></nav></header>
+<main class="wrap"><section class="panel"><h1>MC Control Room</h1><p class="muted">ควบคุมจอหลัก ผู้เล่นเริ่มและเล่นบนมือถือได้อิสระ</p><div id="mode" class="status"></div>
+<section id="loginPanel"><h2>เข้าสู่ระบบ MC</h2><label for="email">อีเมล</label><input id="email" type="email" autocomplete="username"><label for="password">รหัสผ่าน</label><input id="password" type="password" autocomplete="current-password"><button id="login" type="button">เข้าสู่ระบบ</button></section>
+<div id="controls" class="hide"><section class="stage-controls-v46"><h2>✦ ฉากและเกมบนจอหลัก</h2><p id="stageConnection" role="status"></p><p id="currentStage" aria-live="polite"></p>
+<div class="stage-actions"><button type="button" data-command="prev">← ก่อนหน้า</button><button type="button" data-command="pause">Ⅱ พักฉากเดิม</button><button type="button" data-command="auto">▶ วนฉาก Auto</button><button type="button" data-command="next">ถัดไป →</button></div>
+<div class="stage-buttons" aria-label="เลือกฉาก"><button type="button" data-stage="welcome">01 · Grand Hall</button><button type="button" data-stage="questions">02 · Chamber of Decisions</button><button type="button" data-stage="results">03 · Guardian Vault</button><button type="button" data-stage="library">04 · Enchanted Library</button><button type="button" class="partner-command" data-stage="wealth">05 · The Path of Wealth · QR</button></div>
+<p class="hint">Auto วนครบทั้ง 5 ฉาก · หน้า QR ของแต่ละเกมแสดงแยกกัน</p>
+<label for="stageInterval">เวลาต่อฉาก</label><select id="stageInterval"><option value="10">10 วินาที</option><option value="18" selected>18 วินาที</option><option value="30">30 วินาที</option></select>
+<label for="stageMessage">ข้อความบนฉาก Guardian of Finance</label><input id="stageMessage" maxlength="180" placeholder="เว้นว่างเพื่อใช้ข้อความประจำฉาก">
+<section class="effects-control"><h2>✧ เอฟเฟกต์ภาพของจอหลัก</h2><label class="setting-label" for="stageDensity"><span>ความหนาแน่นของประกายเวทและหมอก</span><output id="densityValue" for="stageDensity">45%</output></label><input id="stageDensity" type="range" min="0" max="100" step="5" value="45"><p class="hint">0% = ปิดเอฟเฟกต์ภาพเสริม · 100% = หนาแน่นมาก · ใช้กับจอหลักเท่านั้น</p></section>
+<button type="button" id="applyStageSettings">อัปเดตการตั้งค่าและเอฟเฟกต์จอหลัก</button>
+</section><p class="hint">เปลี่ยนโหมดและเอฟเฟกต์ไม่กระทบคำตอบของผู้เล่น · การตั้งค่าลดการเคลื่อนไหวของอุปกรณ์ยังมีผล</p><button type="button" id="logout" class="secondary">ออกจากระบบ</button></div>
+<p id="feedback" class="notice" role="status" aria-live="polite"></p></section></main>
+<script src="js/show-config.js"></script><script src="js/stage-model-v46.js?v=462"></script><script src="js/stage-service-v46.js"></script><script src="js/host-stage-v46.js"></script><script src="js/fullscreen-v46.js?v=46"></script>
+<script>if(new URLSearchParams(location.search).get('demo')==='1')document.getElementById('openDisplay').href='display.html?demo=1';</script>
+</body></html>

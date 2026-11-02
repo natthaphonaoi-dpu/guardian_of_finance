@@ -1,0 +1,1 @@
+V1.9 uses the user-provided grand-hall.png exactly as a CSS background, named assets/backgrounds/grand-hall-user-original-v19.png. Upload the contents of Guardian_of_Finance_Phase2 so play.html is at site root. Verify image URL /assets/backgrounds/grand-hall-user-original-v19.png and play.html?v=verified-v19.

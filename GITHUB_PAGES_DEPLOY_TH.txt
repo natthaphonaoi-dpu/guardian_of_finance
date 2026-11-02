@@ -1,0 +1,27 @@
+Guardian of Finance V4.6.2 — GitHub Pages Ready
+
+เป้าหมาย GitHub Repository: https://github.com/natthaphonaoi-dpu/guardian_of_finance
+Player: https://natthaphonaoi-dpu.github.io/guardian_of_finance/
+Player แบบระบุไฟล์: https://natthaphonaoi-dpu.github.io/guardian_of_finance/play.html
+MC Console: https://natthaphonaoi-dpu.github.io/guardian_of_finance/host.html
+Main Display: https://natthaphonaoi-dpu.github.io/guardian_of_finance/display.html
+
+สิ่งที่เปลี่ยนจาก ZIP V4.6.2 ต้นฉบับ:
+1. สร้าง QR ใหม่ที่ assets/cards/player-entry-qr-v4.png ให้ชี้ไปยัง https://natthaphonaoi-dpu.github.io/guardian_of_finance/play.html
+2. แก้คอมเมนต์ใน js/display-v4.js ให้ตรงกับ GitHub Pages (ลิงก์หน้า Player ใช้ URL ตามโดเมนปัจจุบันอยู่แล้ว)
+3. เพิ่ม .nojekyll และ README.md
+4. เพิ่มคู่มือฉบับนี้
+
+สิ่งที่คงเดิม:
+- Player / MC Console / Main Display / ระบบ Supabase
+- ภาพฉาก The Path of Wealth และ QR ของอีกทีม ซึ่งยังชี้ไปยัง https://peppy-toffee-ff9e18.netlify.app
+- เพลง การ์ด เอฟเฟกต์ และระบบคำถาม
+
+วิธีอัปโหลด: แตก ZIP ก่อน แล้วนำไฟล์และโฟลเดอร์ภายในทั้งหมดขึ้น root ของ Repository
+โดยต้องเห็น index.html, play.html, host.html, display.html และโฟลเดอร์ assets/css/js ในระดับบนสุด
+จากนั้น GitHub > Settings > Pages > Deploy from a branch > main > /(root) > Save
+
+ข้อควรระวัง: ไม่ควรอัปโหลด ZIP ก้อนเดียวลง Repository โดยคาดหวังให้ GitHub Pages แตกให้อัตโนมัติ
+ห้ามอัปโหลด service_role key / รหัสผ่านลง GitHub สาธารณะ
+ตรวจการล็อกอิน MC, การซิงก์ข้ามเครื่อง, QR ทั้งสองเกม, รูปภาพ, เพลง และการ์ด ก่อนใช้จริง
+ยังไม่ได้เผยแพร่หรือทดสอบบน GitHub Pages จริงในขั้นตอนการสร้าง ZIP นี้

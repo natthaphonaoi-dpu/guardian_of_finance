@@ -1,0 +1,18 @@
+Guardian of Finance — Main Display V4.0 / Scene 1 Grand Hall
+
+ฐานไฟล์: V3.6 Merged Local Test
+แก้ไขเฉพาะ: display.html, css/display-v4.css (เพิ่ม), js/display-v4.js (เพิ่ม), assets/cards/player-entry-qr-v4.png (เพิ่ม)
+ไฟล์ play.html, host.html, js/show.js และระบบผู้เล่น/เสียง/การ์ดไม่เปลี่ยน
+
+QR CODE: https://effulgent-cendol-710f9e.netlify.app/play.html
+ข้อควรทราบ: QR ชี้ไปเว็บไซต์ที่ Deploy อยู่แล้ว ไม่ใช่ Local Server และไม่ได้รับประกันว่าเว็บไซต์ออนไลน์เป็นเวอร์ชัน V3.6
+
+ทดสอบโดยไม่ Deploy:
+1) แตก ZIP แล้วเปิด CMD ในโฟลเดอร์ Guardian_of_Finance_Phase2
+2) py -m http.server 8000
+3) เปิด http://localhost:8000/display.html
+4) ดูว่าภาพ Grand Hall, ชื่อฉาก, QR และแถบสถานะปรากฏ
+5) เปิด http://localhost:8000/host.html เพื่อทดสอบเปลี่ยนฉาก (กรณีใช้ Supabase ต้องล็อกอิน MC)
+6) ใช้มือถือสแกน QR และตรวจว่าปลายทางถูกต้อง
+
+การเปลี่ยน Scene จาก MC ยังใช้ Supabase/polling เดิม ไม่แก้สิทธิ์หรือฐานข้อมูล

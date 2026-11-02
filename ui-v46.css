@@ -1,0 +1,66 @@
+/* Keep the full screen target isolated in the upper right. */
+#guardianFullscreenButton{position:fixed;top:calc(env(safe-area-inset-top,0px) + 10px);right:calc(env(safe-area-inset-right,0px) + 12px);z-index:1000;min-height:44px;padding:10px 15px;border:1px solid #d9ba7e;border-radius:24px;background:#101e34;color:#ffe7b6;font:600 12px/1.3 system-ui,sans-serif;cursor:pointer;touch-action:manipulation;box-shadow:0 4px 16px #0005}
+#guardianFullscreenButton:focus-visible{outline:3px solid #ffe3a4;outline-offset:4px}
+#guardianFullscreenButton:disabled{opacity:.65}
+body>header{padding-right:max(155px,calc(env(safe-area-inset-right,0px) + 145px))!important;min-height:66px}
+.player-layout-v46 .top{min-height:66px;align-items:center}
+.player-layout-v46 .brand{line-height:1.7}
+.player-audio-panel{position:relative;z-index:5;display:flex;align-items:center;flex-wrap:wrap;gap:18px;padding:12px max(18px,env(safe-area-inset-left));background:#101d31;border-bottom:1px solid #c5a05a40;min-height:66px}
+.player-audio-panel .sound{margin:0!important;min-height:44px;min-width:95px}
+.player-audio-panel .audio-v26-controls{display:flex!important;align-items:center;gap:16px;margin:0!important}
+.player-audio-panel .audio-v26-controls label{display:flex!important;align-items:center;gap:12px!important;color:#ead7ac;font-size:12px!important}
+.player-audio-panel .audio-v26-controls input{width:clamp(125px,22vw,220px)!important;min-height:44px;margin:0;accent-color:#f0cf89;touch-action:pan-y}
+/* The course link stays fully opaque even above the result gate artwork. */
+body #result .actions #courseLink{background:#f1d18a!important;color:#182239!important;border:2px solid #fff0bc!important;opacity:1!important;box-shadow:0 5px 22px #0008,0 0 18px #dcb25c30!important;font-weight:800!important;min-height:64px;line-height:1.7;padding:15px 18px;text-align:center}
+body #result .actions #courseLink:hover{background:#ffe7ab!important;box-shadow:0 6px 28px #0009,0 0 22px #e3bc6e60!important}
+#guardianFullscreenNote{position:fixed;top:auto;bottom:max(18px,env(safe-area-inset-bottom));right:12px;z-index:1001;display:flex;align-items:center;gap:12px;max-width:min(330px,calc(100vw - 24px));padding:12px 12px 12px 16px;border:1px solid #c9aa70;border-radius:10px;background:#142239;color:#fff0cf;box-shadow:0 7px 24px #0007;font:13px/1.6 system-ui,sans-serif}
+#guardianFullscreenNote[hidden]{display:none!important}
+#guardianFullscreenNote button{flex-shrink:0;min-width:44px;min-height:44px;border:1px solid #bc9c62;border-radius:7px;background:#23334a;color:#fff0cf;font:24px/1 system-ui;cursor:pointer}
+#guardianFullscreenNote button:focus-visible{outline:3px solid #ffe3a4;outline-offset:2px}
+.main-display-v4 .display-topbar{height:auto!important;min-height:66px;gap:16px;flex-wrap:wrap;padding-block:12px}
+.main-display-v4 .scan-panel[hidden]{display:none!important}
+.main-display-v4 #wealthScanPanel{border-color:#a7dfdb;background:linear-gradient(145deg,#102935f5,#10172bf5);box-shadow:0 18px 55px #0009,inset 0 0 32px #9ae2de12}
+.main-display-v4 #wealthScanPanel .scan-kicker,.main-display-v4 #wealthScanPanel h2{color:#c9f1eb}
+.main-display-v4 #wealthScanPanel a{color:#dcfaf6}
+.main-display-v4 .scene.wealth .display-title{font-size:clamp(3rem,6.5vw,7rem)}
+.main-display-v4 #wealthQr{box-shadow:none;border-radius:0;max-width:none;max-height:none;margin:0;padding:0;width:100%;height:100%;object-fit:contain;background:white}
+.main-display-v4 .wealth-tag{display:inline-block;border:1px solid #9fd9d5;padding:5px 12px;border-radius:20px;font-size:.8rem;letter-spacing:.03em;margin-bottom:10px;color:#d7f0e9}
+#mainMagicCanvas,.main-magic-fog,.main-magic-rune{position:absolute;pointer-events:none!important;z-index:3}
+#mainMagicCanvas{inset:0;width:100%;height:100%}
+.main-magic-fog{inset:55% -15% -15%;opacity:var(--main-fog,.16);background:radial-gradient(ellipse at 20% 70%,#adc1d099,transparent 60%),radial-gradient(ellipse at 75% 85%,#c0af6e66,transparent 60%);filter:blur(35px);animation:stageMagicMist 25s ease-in-out infinite alternate}
+.main-magic-rune{left:35%;top:46%;width:42vw;max-width:650px;aspect-ratio:1;border:1px solid #efd08b;border-radius:50%;opacity:var(--main-rune,.07);transform:translate(-50%,-50%);animation:stageMagicRune 120s linear infinite}
+.main-magic-rune::before,.main-magic-rune::after{content:'';position:absolute;border:1px dashed #f3d69a;inset:8%;border-radius:50%}
+.main-magic-rune::after{inset:22%;border-radius:0;transform:rotate(45deg)}
+.main-fx-off #mainMagicCanvas,.main-fx-off .main-magic-fog,.main-fx-off .main-magic-rune,.main-fx-off .display-sparks{display:none}
+.host-v46 header{gap:12px;flex-wrap:wrap}
+.host-v46 .stage-controls-v46{border:1px solid #b18f4c88;border-radius:14px;padding:22px;background:linear-gradient(145deg,#152138,#0e1829);margin-top:22px}
+.host-v46 .stage-controls-v46 h2{font-size:1.2rem}
+.host-v46 .stage-buttons{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.host-v46 .stage-buttons button{min-height:56px;background:#1c2c43;color:#f8deb0;font-size:.9rem}
+.host-v46 .stage-buttons button.is-selected{background:#dfbc75;color:#172137;border:2px solid #ffedbb}
+.host-v46 .stage-buttons .partner-command{border-color:#94d0ce;color:#c7edeb}
+.host-v46 .stage-buttons .partner-command.is-selected{background:#b6e2df;color:#142430}
+.host-v46 .stage-actions{display:flex;flex-wrap:wrap;gap:10px;margin:18px 0}
+.host-v46 .stage-actions button{flex:1;min-height:50px;white-space:nowrap}
+.host-v46 .effects-control{padding:20px;border:1px solid #c4a06370;border-radius:10px;background:#0a1423;margin-top:24px}
+.host-v46 #stageDensity{min-height:44px;padding:0;accent-color:#e9c779}
+.host-v46 .setting-label{display:flex;justify-content:space-between;gap:15px;color:#ead4a5;font-weight:700}
+.host-v46 #densityValue{font-variant-numeric:tabular-nums}
+.host-v46 #currentStage{padding:14px;border-left:3px solid #d2b16e;background:#c4a15d10;font-size:.95rem}
+.host-v46 #applyStageSettings{width:100%;margin-top:16px;min-height:54px}
+.host-v46 #stageConnection{font-size:.8rem;color:#c4d6d6}
+@keyframes stageMagicMist{from{transform:translateX(-3%) scale(1)}to{transform:translateX(6%) scale(1.1)}}
+@keyframes stageMagicRune{from{transform:translate(-50%,-50%) rotate(0)}to{transform:translate(-50%,-50%) rotate(360deg)}}
+@media(max-width:650px){
+ body>header{padding-right:138px!important}
+ .player-layout-v46 .brand{font-size:10px;letter-spacing:.7px}
+ .player-audio-panel{gap:12px;padding:10px 14px;min-height:70px}
+ .player-audio-panel .audio-v26-controls input{width:clamp(100px,34vw,180px)!important}
+ .player-audio-panel .audio-v26-controls label{gap:8px!important}
+ #guardianFullscreenButton{right:8px;padding:9px 12px}
+ .host-v46 .stage-buttons{grid-template-columns:1fr}
+ .host-v46 .stage-controls-v46{padding:16px}
+ .main-display-v4 .display-topbar .logo{white-space:normal}
+ .main-display-v4 .main-magic-rune{left:50%;width:80vw}
+}
+@media(prefers-reduced-motion:reduce){.main-magic-rune,.main-magic-fog{animation:none!important}}

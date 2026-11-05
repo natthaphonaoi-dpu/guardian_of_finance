@@ -25,7 +25,25 @@ function start(){index=0;answers=[];winner=null;locked=false;sfx('start');setSce
 function render(){if(document.activeElement?.classList?.contains('option'))document.activeElement.blur();locked=false;const q=questions[index];$('counter').textContent=`บททดสอบที่ ${index+1} / ${questions.length}`;$('percent').textContent=Math.round((index+1)/questions.length*100)+'%';$('bar').style.width=((index+1)/questions.length*100)+'%';$('question').textContent=q[0];$('options').replaceChildren();q[1].forEach((txt,i)=>{const b=document.createElement('button');b.type='button';b.className='option';const letter=document.createElement('span');letter.className='letter';letter.textContent=String.fromCharCode(65+i);const label=document.createElement('span');label.textContent=txt;b.append(letter,label);b.onclick=()=>choose(i);$('options').append(b);});sfx('open');}
 function choose(i){if(locked)return;locked=true;/* Release touch/click focus before the next question renders. */if(document.activeElement?.classList?.contains('option'))document.activeElement.blur();sfx('answer');answers[index]=ids[i];if(index===questions.length-1){setTimeout(finish,250);}else{index++;setTimeout(()=>{render()},220);}}
 function previous(){if(locked)return;if(index>0){index--;render();}else setScene('welcome');}
+
 const GUARDIAN_STOCK={lion:47,owl:73,raven:99,turtle:99,fox:74};
+
+async function loadGuardianStock(){
+ try{
+  const response=await fetch('stock.json?t='+Date.now(),{cache:'no-store'});
+  if(!response.ok)throw new Error('โหลดสต็อกไม่สำเร็จ');
+  const data=await response.json();
+  for(const id of ids){
+   if(!Number.isSafeInteger(data[id])||data[id]<0){
+    throw new Error('ข้อมูลสต็อกไม่ถูกต้อง');
+   }
+  }
+  Object.assign(GUARDIAN_STOCK,data);
+ }catch(error){
+  console.warn('ใช้สต็อกสำรอง:',error);
+ }
+}
+
 function chooseWeightedGuardian(answerList){
  const scores=Object.fromEntries(ids.map(id=>[id,0]));
  answerList.forEach(id=>{if(Object.prototype.hasOwnProperty.call(scores,id))scores[id]++;});
@@ -47,7 +65,7 @@ function chooseWeightedGuardian(answerList){
  const last=ids.findLast(id=>GUARDIAN_STOCK[id]>0);
  return {id:last||ids[0],digitalOnly:false};
 }
-function finish(){
+async function finish(){await loadGuardianStock();
 const result=chooseWeightedGuardian(answers);
 winner=result.id;
 const digitalOnly=result.digitalOnly;

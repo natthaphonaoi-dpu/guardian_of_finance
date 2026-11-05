@@ -31,7 +31,7 @@ function chooseWeightedGuardian(answerList){
  answerList.forEach(id=>{if(Object.prototype.hasOwnProperty.call(scores,id))scores[id]++;});
  const weights=ids.map(id=>{
   const stock=Math.max(0,Number(GUARDIAN_STOCK[id])||0);
-  return stock*(1+0.15*scores[id]);
+  return Math.pow(stock, 2) * (1 + 0.05 * scores[id]);
  });
  const total=weights.reduce((sum,w)=>sum+w,0);
  if(total<=0){
@@ -52,7 +52,7 @@ const result=chooseWeightedGuardian(answers);
 winner=result.id;
 const digitalOnly=result.digitalOnly;
 const g=guardians[winner];$('guardianName').textContent=g.name;$('guardianTrait').textContent=g.trait;$('guardianCareer').textContent=g.career;$('card').classList.remove('flipped');$('art').src=`assets/cards/${winner}.jpg`;$('art').alt=g.name;$('art').onerror=()=>{$('art').onerror=null;$('art').src='assets/cards/guardian-placeholder.svg';};$('backArt').src='assets/cards/card-back.png';$('courseLink').href=CONFIG.COURSE_URL;
-$('downloadStatus').textContent=digitalOnly
+$('downloadStatus').textContent = digitalOnly
   ? 'การ์ดสัตว์ผู้พิทักษ์แบบพิมพ์หมดแล้ว แต่คุณยังสามารถบันทึกการ์ดดิจิทัลเป็นที่ระลึกได้!'
   : '';
 setScene('result');const token=++revealToken;

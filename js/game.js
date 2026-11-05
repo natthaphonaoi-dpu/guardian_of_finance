@@ -25,7 +25,55 @@ function start(){index=0;answers=[];winner=null;locked=false;sfx('start');setSce
 function render(){if(document.activeElement?.classList?.contains('option'))document.activeElement.blur();locked=false;const q=questions[index];$('counter').textContent=`บททดสอบที่ ${index+1} / ${questions.length}`;$('percent').textContent=Math.round((index+1)/questions.length*100)+'%';$('bar').style.width=((index+1)/questions.length*100)+'%';$('question').textContent=q[0];$('options').replaceChildren();q[1].forEach((txt,i)=>{const b=document.createElement('button');b.type='button';b.className='option';const letter=document.createElement('span');letter.className='letter';letter.textContent=String.fromCharCode(65+i);const label=document.createElement('span');label.textContent=txt;b.append(letter,label);b.onclick=()=>choose(i);$('options').append(b);});sfx('open');}
 function choose(i){if(locked)return;locked=true;/* Release touch/click focus before the next question renders. */if(document.activeElement?.classList?.contains('option'))document.activeElement.blur();sfx('answer');answers[index]=ids[i];if(index===questions.length-1){setTimeout(finish,250);}else{index++;setTimeout(()=>{render()},220);}}
 function previous(){if(locked)return;if(index>0){index--;render();}else setScene('welcome');}
-function finish(){const scores=Object.fromEntries(ids.map(id=>[id,0]));answers.forEach(id=>scores[id]++);winner=ids.reduce((a,b)=>scores[b]>scores[a]?b:a,ids[0]);const g=guardians[winner];$('guardianName').textContent=g.name;$('guardianTrait').textContent=g.trait;$('guardianCareer').textContent=g.career;$('card').classList.remove('flipped');$('art').src=`assets/cards/${winner}.jpg`;$('art').alt=g.name;$('art').onerror=()=>{$('art').onerror=null;$('art').src='assets/cards/guardian-placeholder.svg';};$('backArt').src='assets/cards/card-back.png';$('courseLink').href=CONFIG.COURSE_URL;$('downloadStatus').textContent='';setScene('result');const token=++revealToken;
+
+const GUARDIAN_STOCK={lion:47,owl:73,raven:99,turtle:99,fox:74};
+
+async function loadGuardianStock(){
+ try{
+  const response=await fetch('stock.json?t='+Date.now(),{cache:'no-store'});
+  if(!response.ok)throw new Error('โหลดสต็อกไม่สำเร็จ');
+  const data=await response.json();
+  for(const id of ids){
+   if(!Number.isSafeInteger(data[id])||data[id]<0){
+    throw new Error('ข้อมูลสต็อกไม่ถูกต้อง');
+   }
+  }
+  Object.assign(GUARDIAN_STOCK,data);
+ }catch(error){
+  console.warn('ใช้สต็อกสำรอง:',error);
+ }
+}
+
+function chooseWeightedGuardian(answerList){
+ const scores=Object.fromEntries(ids.map(id=>[id,0]));
+ answerList.forEach(id=>{if(Object.prototype.hasOwnProperty.call(scores,id))scores[id]++;});
+ const weights=ids.map(id=>{
+  const stock=Math.max(0,Number(GUARDIAN_STOCK[id])||0);
+  return Math.pow(stock, 2) * (1 + 0.05 * scores[id]);
+ });
+ const total=weights.reduce((sum,w)=>sum+w,0);
+ if(total<=0){
+  const highest=Math.max(...ids.map(id=>scores[id]));
+  const tied=ids.filter(id=>scores[id]===highest);
+  return {id:tied[Math.floor(Math.random()*tied.length)],digitalOnly:true};
+ }
+ let random=Math.random()*total;
+ for(let i=0;i<ids.length;i++){
+  random-=weights[i];
+  if(random<0)return {id:ids[i],digitalOnly:false};
+ }
+ const last=ids.findLast(id=>GUARDIAN_STOCK[id]>0);
+ return {id:last||ids[0],digitalOnly:false};
+}
+async function finish(){await loadGuardianStock();
+const result=chooseWeightedGuardian(answers);
+winner=result.id;
+const digitalOnly=result.digitalOnly;
+const g=guardians[winner];$('guardianName').textContent=g.name;$('guardianTrait').textContent=g.trait;$('guardianCareer').textContent=g.career;$('card').classList.remove('flipped');$('art').src=`assets/cards/${winner}.jpg`;$('art').alt=g.name;$('art').onerror=()=>{$('art').onerror=null;$('art').src='assets/cards/guardian-placeholder.svg';};$('backArt').src='assets/cards/card-back.png';$('courseLink').href=CONFIG.COURSE_URL;
+$('downloadStatus').textContent = digitalOnly
+  ? 'การ์ดสัตว์ผู้พิทักษ์แบบพิมพ์หมดแล้ว แต่คุณยังสามารถบันทึกการ์ดดิจิทัลเป็นที่ระลึกได้!'
+  : '';
+setScene('result');const token=++revealToken;
  window.GuardianResultMagic?.reveal();sfx('summon');
  setTimeout(()=>{if(token===revealToken&&scene==='result')sfx('reveal');},3200);}
 function flip(){if($('result').classList.contains('reveal-running')){ $('downloadStatus').textContent='กรุณารอการเปิดเผยผู้พิทักษ์สักครู่';return;}sfx('flip');$('card').classList.toggle('flipped');window.GuardianResultMagic?.flip();}
